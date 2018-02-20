@@ -1,4 +1,4 @@
-const subject = require("./index").eventsForTime;
+import subject from "./eventsForTime";
 
 describe("eventsForTime()", () => {
   test("exports function", () => {

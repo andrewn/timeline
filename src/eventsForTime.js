@@ -3,7 +3,7 @@ const isValid = event =>
   typeof event.start === "number" &&
   typeof event.end === "number";
 
-export const eventsForTime = (currentTime = 0, events = []) => {
+export default (currentTime = 0, events = []) => {
   const cloned = JSON.parse(JSON.stringify(events));
 
   return cloned.reduce((matching, event) => {
@@ -18,3 +18,5 @@ export const eventsForTime = (currentTime = 0, events = []) => {
     return matching;
   }, []);
 };
+
+export class Timeline {}
