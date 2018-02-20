@@ -1,3 +1,6 @@
+import mitt from "mitt";
+import xor from "lodash.xor";
+
 import eventsForTime from "./eventsForTime";
 
 const Private = {
@@ -43,6 +46,12 @@ export default class Timeline {
 
   update() {
     const previous = this[Private.current];
-    this[Private.current] = eventsForTime(this.currentTime, this.events);
+    const current = eventsForTime(this.currentTime, this.events);
+
+    this[Private.current] = current;
+
+    if (xor(previous, current).length > 0) {
+      this.emit("change", { current });
+    }
   }
 }

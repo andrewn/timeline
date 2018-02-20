@@ -38,7 +38,7 @@ describe("Timeline", () => {
     expect(instance.current).toEqual([]);
   });
 
-  test.skip("change event emitted when current events are different", () => {
+  test("change event emitted when current events are different", () => {
     const instance = new Subject();
     const changeHandler = jest.fn();
 
@@ -53,10 +53,19 @@ describe("Timeline", () => {
       current: [{ id: "1", start: 0, end: 1 }]
     });
 
+    changeHandler.mockReset();
     instance.currentTime = 0.5;
-    instance.currentTime = 1.5;
+    expect(changeHandler).not.toHaveBeenCalled();
 
-    expect(instance.changeHandler).toHaveBeenCalledTimes();
-    expect(instance.current).toEqual([]);
+    instance.currentTime = 1.5;
+    expect(changeHandler).toHaveBeenLastCalledWith({
+      current: [{ id: "2", start: 1, end: 2 }]
+    });
+
+    changeHandler.mockReset();
+    instance.currentTime = 10;
+    expect(changeHandler).toHaveBeenLastCalledWith({
+      current: []
+    });
   });
 });
