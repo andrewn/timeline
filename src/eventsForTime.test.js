@@ -21,6 +21,17 @@ describe("eventsForTime()", () => {
     expect(subject(10, events)).toEqual([]);
   });
 
+  test("matching events are frozen, allowing object identity checks", () => {
+    const matching = subject(0, events);
+
+    expect(matching[0]).toBe(events[0]);
+
+    expect(Object.isFrozen(matching[0])).toBe(true);
+
+    expect(() => (matching[0].end = 100)).toThrowError(TypeError);
+    expect(matching[0].end).toBe(1);
+  });
+
   const overlapping = [
     { id: "1", start: 0, end: 1.5 },
     { id: "2", start: 0.5, end: 2 }
@@ -34,10 +45,6 @@ describe("eventsForTime()", () => {
     expect(subject(1.8, overlapping)).toEqual([
       { id: "2", start: 0.5, end: 2 }
     ]);
-  });
-
-  test("matching event should be a clone, not the actual object", () => {
-    expect(subject(0, events)[0]).not.toBe(events[0]);
   });
 
   test("start and end must be numbers", () => {

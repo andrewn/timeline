@@ -4,9 +4,9 @@ const isValid = event =>
   typeof event.end === "number";
 
 export default (currentTime = 0, events = []) => {
-  const cloned = JSON.parse(JSON.stringify(events));
+  events.forEach(Object.freeze);
 
-  return cloned.reduce((matching, event) => {
+  const matches = events.reduce((matching, event) => {
     if (!isValid(event)) {
       throw new Error(`start and end must be a number`);
     }
@@ -17,6 +17,6 @@ export default (currentTime = 0, events = []) => {
 
     return matching;
   }, []);
-};
 
-export class Timeline {}
+  return Object.freeze(matches);
+};
