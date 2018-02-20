@@ -3,7 +3,7 @@ const isValid = event =>
   typeof event.start === "number" &&
   typeof event.end === "number";
 
-export default (currentTime = 0, events = []) => {
+export const eventsForTime = (currentTime = 0, events = []) => {
   const cloned = JSON.parse(JSON.stringify(events));
 
   return cloned.reduce((matching, event) => {

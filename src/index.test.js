@@ -1,6 +1,6 @@
-const subject = require("./index").default;
+const subject = require("./index").eventsForTime;
 
-describe("timeline", () => {
+describe("eventsForTime()", () => {
   test("exports function", () => {
     expect(typeof subject).toBe("function");
   });
