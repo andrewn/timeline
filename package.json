@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Andrew Nicolaou <me@andrewnicolaou.co.uk>",
   "license": "Apache-2.0",
   "devDependencies": {
     "babel-core": "^6.26.0",
