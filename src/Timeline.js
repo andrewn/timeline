@@ -1,7 +1,7 @@
 import mitt from "mitt";
 import xor from "lodash.xor";
 
-import eventsForTime from "./eventsForTime";
+import eventsForTime from "./eventsForTime.js";
 
 const Private = {
   current: Symbol("current"),

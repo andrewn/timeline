@@ -1,7 +1,2 @@
-import eventsForTime from "./eventsForTime";
-import Timeline from "./Timeline";
-
-export default {
-  eventsForTime,
-  Timeline
-};
+export { default as eventsForTime } from "./eventsForTime.js";
+export { default as Timeline } from "./Timeline.js";
